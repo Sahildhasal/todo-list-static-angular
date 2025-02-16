@@ -1,0 +1,133 @@
+<div class="min-h-screen bg-gray-50">
+    <!-- Header Section -->
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-8 shadow-xl transform hover:scale-[1.02] transition-transform duration-300">
+            <h1 class="text-center text-4xl font-bold text-white tracking-wide">
+                ✨ Task Master
+            </h1>
+            <p class="text-center text-blue-100 mt-2">Organize your day, achieve your goals</p>
+        </div>
+
+        <!-- Todo Form Section -->
+        <div class="mt-8 bg-white rounded-xl shadow-lg p-8 transform hover:shadow-xl transition-all duration-300">
+            <h2 class="text-xl font-semibold text-gray-700 mb-6">Create New Task</h2>
+            <form [formGroup]="todoForm" class="space-y-6" (ngSubmit)="onSubmit()">
+                <!-- Task Name Input -->
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-gray-700 block">Task Name</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                            📝
+                        </span>
+                        <input 
+                            class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                            type="text"
+                            formControlName="taskName"
+                            placeholder="What needs to be done?"
+                        />
+                    </div>
+                </div>
+
+                <!-- Task Description Input -->
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-gray-700 block">Task Description</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                            📄
+                        </span>
+                        <input 
+                            class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                            type="text"
+                            formControlName="taskDescription"
+                            placeholder="Add some details..."
+                        />
+                    </div>
+                </div>
+
+                <!-- Due Date Input -->
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-gray-700 block">Due Date</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                            📅
+                        </span>
+                        <div class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-all duration-200">
+                            <input 
+                                matInput 
+                                [matDatepicker]="picker"
+                                formControlName="dueDate"
+                                placeholder="Select deadline"
+                                class="w-full focus:outline-none"
+                            />
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="flex justify-end">
+                    <button 
+                        [disabled]="this.todoForm.invalid"
+                        [ngClass]="this.todoForm.invalid ? 
+                            'bg-gray-300 cursor-not-allowed opacity-60' : 
+                            'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105'"
+                        type="submit"
+                        class="px-6 py-2.5 text-white rounded-lg shadow-md transition-all duration-300 flex items-center gap-2"
+                    >
+                        <span>{{isUpdateOperation ? '🔄 Update' : '✨ Create'}}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Task List Section -->
+        <div class="mt-8 bg-white rounded-xl shadow-lg p-1 sm:p-8">
+            <h2 class="text-2xl font-bold text-gray-700 mb-6 flex items-center gap-2">
+                📋 Your Tasks
+                <span class="text-sm font-normal text-gray-500">({{todoFormArray.length}} items)</span>
+            </h2>
+
+            <!-- Table Structure -->
+            <div class="overflow-hidden rounded-xl border border-gray-200">
+                <!-- Table Header -->
+                <div class="grid grid-cols-4 bg-gray-50 font-medium text-sm text-gray-600 p-4 border-b">
+                    <div class="text-left">TASK NAME</div>
+                    <div class="text-left">DESCRIPTION</div>
+                    <div class="text-center">DUE DATE</div>
+                    <div class="text-center">ACTIONS</div>
+                </div>
+
+                <!-- Table Rows -->
+                <div *ngFor="let todo of todoFormArray; let i = index" 
+                    class="grid grid-cols-4 p-4 items-center hover:bg-blue-50 transition-colors duration-200 border-b last:border-b-0 group">
+                    <div class="text-left font-medium text-gray-800 break-words">{{todo.taskName}}</div>
+                    <div class="text-left text-gray-600 break-words">{{todo.taskDescription}}</div>
+                    <div class="text-center text-gray-600">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm break-words" 
+                            [ngClass]="isOverdue(todo.dueDate) ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'">
+                            {{todo.dueDate | date: 'dd MMM yyyy'}}
+                        </span>
+                    </div>
+                    <div class="text-center space-x-2 opacity-50 group-hover:opacity-100 transition-opacity duration-200">
+                        <button (click)="editTodo(i)" 
+                            class="p-2 rounded-lg hover:bg-blue-100 text-blue-600 transition-colors duration-200">
+                            <span class="text-xl">✏️</span>
+                        </button>
+                        <button (click)="deleteTodo(i)" 
+                            class="p-2 rounded-lg hover:bg-red-100 text-red-600 transition-colors duration-200">
+                            <span class="text-xl">🗑️</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div *ngIf="todoFormArray.length === 0" 
+                    class="p-8 text-center text-gray-500">
+                    <p class="text-xl mb-2">👋 No tasks yet!</p>
+                    <p>Create your first task to get started</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
