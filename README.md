@@ -1,27 +1,84 @@
-# ToDoListAngular
+# TaskMaster Pro
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.9.
+A modern, responsive Todo List application built with Angular and styled with Tailwind CSS. Features an intuitive user interface with smooth animations, task management capabilities, and a professional design.
 
-## Development server
+## 🌟 Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Create, Read, Update, and Delete tasks
+- Modern UI with gradient effects and animations
+- Responsive design for all screen sizes
+- Due date tracking with visual indicators
+- Form validation with visual feedback
+- Empty state handling
+- Interactive hover effects
+- Accessibility-focused design
 
-## Code scaffolding
+## 🚀 Tech Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular 16+
+- Tailwind CSS
+- Angular Material (for datepicker)
+- TypeScript
+- HTML5
+- CSS3
 
-## Build
+## 📋 Prerequisites
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Node.js (v14+)
+- npm (v6+)
+- Angular CLI
 
-## Running unit tests
+## 🛠️ Installation
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Clone the repository
+```bash
+git clone https://github.com/your-username/taskmaster-pro.git
+```
 
-## Running end-to-end tests
+2. Navigate to project directory
+```bash
+cd taskmaster-pro
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. Install dependencies
+```bash
+npm install
+```
 
-## Further help
+4. Start the development server
+```bash
+ng serve
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+5. Open your browser and visit `http://localhost:4200`
+
+## 📁 Project Structure
+
+```
+taskmaster-pro/
+├── src/
+│   ├── app/
+│   │   ├── components/
+│   │   │   └── todo-list/
+│   │   ├── models/
+│   │   │   └── todo.model.ts
+│   │   ├── services/
+│   │   │   └── todo.service.ts
+│   │   └── app.component.ts
+│   ├── assets/
+│   └── styles.css
+├── tailwind.config.js
+└── package.json
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details
