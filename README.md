@@ -1,3 +1,53 @@
+# TaskMaster Pro
+
+A modern, responsive Todo List application built with Angular and styled with Tailwind CSS. Features an intuitive user interface with smooth animations, task management capabilities, and a professional design.
+
+## 🌟 Features
+
+- Create, Read, Update, and Delete tasks
+- Modern UI with gradient effects and animations
+- Responsive design for all screen sizes
+- Due date tracking with visual indicators
+- Form validation with visual feedback
+- Empty state handling
+- Interactive hover effects
+- Accessibility-focused design
+
+## 🚀 Tech Stack
+
+- Angular 16+
+- Tailwind CSS
+- Angular Material (for datepicker)
+- TypeScript
+- HTML5
+- CSS3
+
+## 📋 Prerequisites
+
+- Node.js (v14+)
+- npm (v6+)
+- Angular CLI
+
+## 🛠️ Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/Sahildhasal/todo-list-static-angular.git
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+4. Start the development server
+```bash
+ng serve
+```
+
+5. Open your browser and visit `http://localhost:4200`
+
+
 # ToDoListAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.9.
